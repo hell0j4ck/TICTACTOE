@@ -28,9 +28,9 @@ def player_assignment():
 #FUNCTION TO DISPLAY THE GAME BOARD
 def display_board(board):
 	print('    '+board[7]+'    '+'|'+'    '+board[8]+'    '+'|'+'    '+board[9]+'    ')
-	print('-----------------------')
+	print('---------------------------')
 	print('    '+board[4]+'    '+'|'+'    '+board[5]+'    '+'|'+'    '+board[6]+'    ')
-	print('-----------------------')
+	print('---------------------------')
 	print('    '+board[1]+'    '+'|'+'    '+board[2]+'    '+'|'+'    '+board[3]+'    ')
 
 
@@ -122,6 +122,9 @@ while game_on == True:
 		display_board(game_board)
 		position = player_choice() 
 		place_marker(game_board,player1,position)
+		win_check(game_board,player1)
+		full_board_check(game_board)
+
 
 
 		if win_check(game_board,player1) == True:
@@ -129,7 +132,7 @@ while game_on == True:
 			display_board(game_board)
 			print('\n'*100)
 			print('Player 1 Has Won!')
-			game_on == False
+			game_on = False
 
 		else:
 
@@ -138,6 +141,7 @@ while game_on == True:
 				display_board(game_board)
 				print('\n'*100)
 				print('Its a TIE!')
+				game_on = False
 
 			else:
 				turn = 'Player 2'
@@ -150,13 +154,15 @@ while game_on == True:
 		display_board(game_board)
 		position = player_choice() 
 		place_marker(game_board,player2,position)
+		win_check(game_board,player2)
+		full_board_check(game_board)
 
 		if win_check(game_board,player2) == True:
 			
 			display_board(game_board)
 			print('\n'*100)
 			print('Player 2 Has Won!')
-			game_on == False
+			game_on = False
 
 		else:
 
@@ -165,6 +171,7 @@ while game_on == True:
 				display_board(game_board)
 				print('\n'*100)
 				print('Its a TIE!')
+				game_on=False
 
 			else:
 				turn = 'Player 1'
@@ -174,7 +181,13 @@ while game_on == True:
 
 
 
+if game_on == False:
+	player_decision = input(print('Do you want to play again? Y/N'))
+	if player_decision == 'Y':
+		game_on = True
 
+	else:
+		game_one = False
 
 
 
